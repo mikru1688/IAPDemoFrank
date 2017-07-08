@@ -33,9 +33,11 @@ class IAPViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         // 發送請求取得在iTunes Connect內購的產品資訊，並非所有的產品，只會請求有定義的產品 ID
         self.requestProductInfo()
-        
-        // 設定交易流程觀察者，會在背景一直檢查交易的狀態，成功與否會透過 protocol 得知
-        SKPaymentQueue.default().add(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // 移除觀查者
+        SKPaymentQueue.default().remove(self)
     }
     
     // MARK: - Callback
@@ -143,6 +145,9 @@ class IAPViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 SKPaymentQueue.default().finishTransaction(transaction)
                 self.isProgress = false
                 
+                // 移除觀查者
+                SKPaymentQueue.default().remove(self)
+                
                 // 跟 ViewController 說已完成付款，必須增加金幣
                 delegate.didBuySomething(self, self.selectedProductIndex == 0 ? Product.consumable : Product.nonConsumable)
                 
@@ -153,7 +158,21 @@ class IAPViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.dismiss(animated: true, completion: nil)
             case SKPaymentTransactionState.failed:
                 print("交易失敗...")
-                // 必要的機制
+                
+                if let error = transaction.error as? SKError {
+                    switch error.code {
+                    case .paymentCancelled:
+                        // 輸入 Apple ID 密碼時取消
+                        print("Transaction Cancelled: \(error.localizedDescription)")
+                    case .paymentInvalid:
+                        print("Transaction paymentInvalid: \(error.localizedDescription)")
+                    case .paymentNotAllowed:
+                        print("Transaction paymentNotAllowed: \(error.localizedDescription)")
+                    default:
+                        print("Transaction: \(error.localizedDescription)")
+                    }
+                }
+                
                 SKPaymentQueue.default().finishTransaction(transaction)
                 self.isProgress = false
             case SKPaymentTransactionState.restored:
@@ -201,6 +220,9 @@ class IAPViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             buyAction = UIAlertAction(title: "購買", style: UIAlertActionStyle.default) { (action) -> Void in
                                 
                 if SKPaymentQueue.canMakePayments() {
+                    // 設定交易流程觀察者，會在背景一直檢查交易的狀態，成功與否會透過 protocol 得知
+                    SKPaymentQueue.default().add(self)
+                    
                     // 取得內購產品
                     let payment = SKPayment(product: self.productsArray[self.selectedProductIndex])
                     

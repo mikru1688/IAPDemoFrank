@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "00BEFF1F831485F6567CF5EC02C860B33DB14228",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "00BEFF1F831485F6567CF5EC02C860B33DB14228" : 9223372036854775807,
+    "AC753A2F328F99BFA56085F960E051F506099CF7" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B792CE19-28C6-446D-8EE9-C9F26500AB14",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "00BEFF1F831485F6567CF5EC02C860B33DB14228" : "IAPDemoFrank\/",
+    "AC753A2F328F99BFA56085F960E051F506099CF7" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IAPDemoFrank",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "IAPDemoFrank.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mikru1688\/IAPDemoFrank.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "00BEFF1F831485F6567CF5EC02C860B33DB14228"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mikru1688\/Teaching.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AC753A2F328F99BFA56085F960E051F506099CF7"
+    }
+  ]
+}
